@@ -1,0 +1,131 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{title}}
+        <span *ngIf="slideCount>0 && !loading"  style="position: absolute;right: 0;">
+          {{currentIndex+1}} / {{slideCount}}
+        </span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content scroll="false">
+  <div *ngIf="loading" class="cSpinner">
+    <div style="display: table-cell;vertical-align: middle;  text-align: center;">
+      <ion-spinner  class="ion-spinner" ></ion-spinner>
+    </div>
+  </div>
+  <p *ngIf="slideCount==0 && !loading">No se encontraron registros.</p>
+  <p *ngIf="message">{{message}}</p>
+
+  <div class="content_pager" *ngIf="slideCount>0 && !loading">
+    <div class="leftCursor" (click)="prev()">
+      <div class="middleText">
+        <ion-icon *ngIf="(currentIndex)" name="ios-arrow-back"></ion-icon>
+      </div>
+    </div>
+    <div class="wordText">
+      <button  *ngIf="!selected.show" ion-button  type="button" (click)="mostrar()" >Show</button>
+      <button  *ngIf="!selected.learned && selected.show" ion-button ion-button 
+      color="{{learnedStyle}}" type="button" (click)="learned()" >Learned 
+        <ion-spinner *ngIf="learnedLoading"  class="ion-spinner spinnerButton" ></ion-spinner>
+      </button>
+
+    </div>  
+    <div class="rightCursor" (click)="next()">
+      <div class="middleText">
+        <ion-icon *ngIf="(currentIndex!=(slideCount-1))" name="ios-arrow-forward"></ion-icon>
+      </div>    
+    </div>
+  </div>
+  
+  <div class="content_text" *ngIf="slideCount>0 && !loading">
+
+    <div class="topWord">
+      <div class="wordText title">{{selected.es}}</div>  
+    </div>
+    <div class="bottomWord">
+      <div *ngIf="selected.show" class="wordText title" style="color: #ddd"> {{selected.us}}</div>
+    </div>
+  </div>
+  <!-- 
+
+  
+-->
+
+</ion-content>
+
+<!-- 
+
+  
+
+
+  
+
+  
+  <div class="middleWord" style="background-color: yellow">
+          <button ion-button  type="button" (click)="prev()" >Prev</button>
+          
+          <button ion-button  type="button" (click)="next()" >Next</button>
+          <br>
+          {{sPost}}
+  </div>
+  
+  
+  
+  <div class="middleWord">
+    
+    <div></div>
+  </div>
+  <div class="bottomWord">
+    
+
+    <div   class="topWordDiv title" style="color: #ddd"> {{selected.us}}</div>
+
+      <div *ngIf="false">
+        <div *ngIf="selected.literal" class="bottomBox">
+          <span class="spanText">Literal</span>: {{selected.literal}}
+        </div>
+        <span class="spanText">Meaning</span>: {{selected.meaning}}</div>
+        <div *ngIf="selected.example" class="bottomBox">
+            <span class="spanText">Example</span>: {{selected.example}}
+        </div>
+  </div>
+-->
+<!-- 
+  
+
+  
+
+  <ion-slides *ngIf="slideCount>0 && !loading" (ionSlideDidChange)="slideChanged()">
+      <ion-slide *ngFor="let ph of phrases">
+        <div class="topWord">
+          <div class="topWordDiv title">{{ph.es}}</div>  
+        </div>
+        <div class="middleWord">
+          <button ion-button  type="button" (click)="Ocultar()" >Ocultar</button>
+          <button ion-button  type="button" (click)="post2()" >Send 2</button>
+          <button ion-button  type="button" (click)="post3()" >Send 3</button>
+          <br>
+          {{sPost}}
+        </div>
+        <div class="bottomWord">
+            <div class="title" style="color: #ddd"> {{ph.us}}</div>
+            
+            <div *ngIf="false">
+              <div *ngIf="ph.literal" class="bottomBox">
+                  <span class="spanText">Literal</span>: {{ph.literal}}
+              </div>
+              <div *ngIf="ph.meaning" class="bottomBox">
+                  <span class="spanText">Meaning</span>: {{ph.meaning}}</div>
+              <div *ngIf="ph.example" class="bottomBox">
+                  <span class="spanText">Example</span>: {{ph.example}}</div>
+            </div>
+        </div>
+ 
+
+      </ion-slide>
+  </ion-slides>
+  -->

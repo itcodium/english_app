@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    
+      <div style="background-color: #222;text-align: right;">
+      <ion-toggle (ionChange)="stateChange($event)" style="position: absolute;right: 0;top:0"  color="green"  [(ngModel)]="online"></ion-toggle>
+    </div>
+
+    
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content  scroll="false">
+
+	<p *ngIf="error">{{error}}</p>
+  <p *ngIf="loading" style="text-align:center;">
+    <ion-spinner class="ion-spinner"></ion-spinner>
+  </p>
+  <p *ngIf="!categories && !loading" style="">No se encontraron registros.</p>
+
+  <ion-list  class="list list-description" *ngIf="!loading">
+    <div  class = "item" *ngFor="let item of categories" (click)="itemSelected(item)">
+         <p> {{item.category }}</p>
+    </div>
+
+    
+  </ion-list>
+</ion-content>  

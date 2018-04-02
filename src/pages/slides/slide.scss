@@ -1,0 +1,118 @@
+page-contact {
+
+}
+
+
+ion-spinner {
+    * {
+        stroke: #fff !important;
+        fill: #f00;
+      }
+}
+
+.spinnerButton svg {
+  width: 64px;
+  height: 64px;
+}
+
+.cSpinner{
+	text-align:center;
+	width:100%;
+	height:100%;
+	text-align: center;
+	display: table;
+	position:absolute;
+}
+
+.spinnerButton svg {
+  width: 24px;
+  height: 24px;
+  margin-left:10px;
+}
+
+.title{
+	font-size:22px;
+}
+
+::-webkit-scrollbar{
+	display:none;
+}
+
+/* configuracion del slide */
+/*
+	ion-slides{
+		background-color: #222;
+	}
+*/
+
+
+ 
+.content_pager{
+	position:absolute;
+	width:100%;
+	height:100%;
+	z-index:100;
+	display:table;
+}
+
+.content_text{
+	position:absolute;
+	width:100%;
+	height:100%;
+	z-index:99;
+
+}
+
+ /* Estilo del texto	*/
+
+.leftCursor,.rightCursor{
+	width: 17%;
+	height:100%;
+	display:table;
+	position: absolute;
+	vertical-align:middle;
+	display: table;
+	overflow: hidden;
+	
+}
+
+.rightCursor{
+	right:0;
+	text-align:right;
+}
+.middleText{
+	display: table-cell; 
+	vertical-align: middle;	
+	padding:0 30px 0 30px;
+	font-size:30px;
+}
+
+/* Estilo del texto	Idioma ES-US */
+
+.topWord{
+	height:40%;
+	min-height:40%;
+	position:absolute;
+	display:table;
+	width:100%;
+	top:0;
+	color: #dbe20d;
+} 
+
+.bottomWord{
+	height:40%;
+	min-height:40%;
+	display:table;
+	width:100%;
+	color: #dbe20d;
+	position:absolute;
+	bottom:0;
+}
+
+
+.wordText {
+	width:100%;
+	vertical-align: middle;
+	display:table-cell;
+	text-align:center;
+}

@@ -1,0 +1,51 @@
+page-home {
+
+}
+
+
+ion-spinner {
+    * {
+        stroke: #fff !important;
+        fill: #f00;
+      }
+}
+
+.spinner svg {
+  width: 64px;
+  height: 64px;
+}
+
+
+.list-description .item p {
+  text-transform: capitalize;
+}
+.list-description .item {
+  white-space: normal;
+  text-align:justify;
+  padding-left:10px;
+  font-size:1.2em;
+  border-bottom:solid #444 1px;
+}
+
+
+.too{
+  
+  toggle-ios-border-color-off:"#f00";
+  toggle-ios-border-color-on:"#0f0";
+ 
+}
+
+ 
+ .toggle-checked {
+   transition: all 1.1s ease;
+   background-color: #212121 !important;
+ }
+
+
+ ion-toggle {
+  zoom: 1.2;
+  margin:0;
+  padding:0;
+
+}
+$toggle-ios-handle-height:50px;
