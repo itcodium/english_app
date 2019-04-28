@@ -20,7 +20,8 @@ export class MyApp {
   // rootPage:any = TabsPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,cache: CacheService) {
-     cache.setDefaultTTL(60 * 60); //set default cache TTL for 1 hour
+    //cache.setDefaultTTL(60 * 60); //set default cache TTL for 1 hour
+    cache.setDefaultTTL(0); //set default cache TTL for 1 hour
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

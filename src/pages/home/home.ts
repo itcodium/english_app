@@ -25,18 +25,21 @@ export class HomePage {
   disconnectSubscription = this.network.onDisconnect().subscribe(() => {
     window.localStorage.setItem('online', "false");
     this.online=false;
+    this.getCategories()
   });
 
   connectSubscription = this.network.onConnect().subscribe(() => {
     this.error='';
     window.localStorage.setItem('online', "true");
     this.online=true;
+    this.getCategories()
   });
 
 
   stateChange(){
     console.log("CHANGED",this.online)
     window.localStorage.setItem( 'online', this.online.toString());
+    this.getCategories()
   }
   ngOnInit() {
 
@@ -46,6 +49,7 @@ export class HomePage {
     }catch(err) {
         this.error= err.message;
     }
+    
     this.categoriesCount=undefined;
     this.getCategories();
     

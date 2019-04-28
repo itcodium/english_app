@@ -62,30 +62,43 @@ prev(){
     var curInd=this.currentIndex-1;
     if(curInd>=0){
       this.selected=this.phrases[--this.currentIndex];
+      console.log("PREV")
+      window.localStorage.setItem(this.title+"_index",curInd.toString())
     }
   }
   next(){
     this.learnedStyle="danger"
     var curInd=this.currentIndex+1;
     if(curInd<this.phrases.length){
+      console.log("NEXT")
       this.selected=this.phrases[++this.currentIndex];
+      window.localStorage.setItem(this.title+"_index",curInd.toString())
     }
+    
   }
  ngOnInit() {
     this.slideCount=0;
-    this.currentIndex=0;
+    
     this.selected={};
     try {
         this.online=(window.localStorage.getItem('online') == 'true');
+        var index =parseInt(window.localStorage.getItem(this.title+"_index"))// JSON.parse();
+        if(!index){
+          this.currentIndex = 0
+        }else{
+          this.currentIndex=index;    
+        }
+        console.log("INDEX -> ",this.title+"_index",index)
+
         if(this.online){
           this.getPhrases(this.title);    
         }else{
             var obj = JSON.parse(window.localStorage.getItem(this.title));
             this.loading= false;
-            this.currentIndex = 0;
+            // this.currentIndex = 0;
             this.phrases = obj;
             this.slideCount=this.phrases.length;
-            this.selected=this.phrases[0];
+            this.selected=this.phrases[this.currentIndex];
         }
         
     }
@@ -130,11 +143,13 @@ prev(){
               }else{
               
                   this.loading= false;
-                  this.currentIndex = 0;
+                  console.log("this.currentIndex",this.currentIndex)
+                  if(!this.currentIndex){
+                    this.currentIndex=0;
+                  }
                   this.selected = phrases[this.currentIndex];
                   this.phrases = phrases;
                   this.slideCount=phrases.length;
-                  console.log("+ phrases +",this.currentIndex ,this.slideCount,this.phrases );
                   window.localStorage.setItem(this.title, JSON.stringify(phrases));
               }
     });

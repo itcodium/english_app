@@ -29,7 +29,7 @@ export class EnglishService {
   // https://github.com/Nodonisko/ionic-cache
   ///  private apiUrlPhrases = 'http://chatbot-chatbot01.7e14.starter-us-west-2.openshiftapps.com/api/ingles/phrases'
   
-  //private api="http://127.0.0.1:5000/api/ingles/";
+  // private api="http://127.0.0.1:5000/api/ingles/";
   private api="http://chatbot-chatbot01.7e14.starter-us-west-2.openshiftapps.com/api/ingles/";
   // private user_id=window.localStorage.getItem('user_id');
   

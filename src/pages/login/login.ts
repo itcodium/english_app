@@ -3,6 +3,7 @@ import { NavController,LoadingController, Loading, AlertController} from 'ionic-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../model/phrase';
 //import { Observable } from 'rxjs/Observable';
+import { Network } from '@ionic-native/network';
 import { HomePage } from '../home/home';
 import { EnglishService } from '../../app/services/english.service';
 
@@ -20,24 +21,21 @@ export class LoginPage {
   public loading:Loading;
   public user: User;
   public message:string;
+  public online: boolean;
   constructor(
     public navCtrl: NavController,
     public formBuilder: FormBuilder,
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
-    private englishService: EnglishService
+    private englishService: EnglishService,
+    private network: Network
 
   ) {
-    
-    
     var user_id=window.localStorage.getItem('user_id');
-    console.log("1",user_id)
-      if(typeof user_id!='undefined' && user_id!=null){
-          this.navCtrl.push(HomePage);
-          console.log("2")
-      }
-    
-
+    if(typeof user_id!='undefined' && user_id!=null){
+        this.navCtrl.push(HomePage);
+        console.log("2")
+    }
     this.myForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -45,13 +43,20 @@ export class LoginPage {
     this.user=new User();
   }
 
-  loginUser(){
 
-    console.log("Email:" + this.myForm.value.email);
-    console.log("Password:" + this.myForm.value.password);
-    /* console.log("this.user:" , this.user);
-    console.log("Email:" + this.myForm.value.email);
-    console.log("Password:" + this.myForm.value.password); */
+  disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+    window.localStorage.setItem('online', "false");
+    this.online=false;
+  });
+  connectSubscription = this.network.onConnect().subscribe(() => {
+    window.localStorage.setItem('online', "true");
+    this.online=true;
+  });
+  stateChange(){
+    window.localStorage.setItem( 'online', this.online.toString());
+  }
+
+  loginUser(){
     this.user.email=this.myForm.value.email;
     this.user.password=this.myForm.value.password;
 
@@ -68,7 +73,6 @@ export class LoginPage {
                 }
                 
           })
-  
   }
   
 
