@@ -1,0 +1,319 @@
+﻿Getting Started with Angular Material 2
+
+
+IONIC OK
+https://psicologiaymente.net/reflexiones/frases-cortas-en-ingles 
+20 -> next 21
+http://chatbot-chatbot01.7e14.starter-us-west-2.openshiftapps.com/api/ingles
+
+
+https://scotch.io/tutorials/build-a-mobile-app-with-angular-2-and-ionic-2
+
+
+ng serve --open
+ng generate component cTest
+
+
+http://idangero.us/swiper/get-started/
+
+
+
+
+Referencia:
+https://loiane.com/2017/07/getting-started-with-angular-material-2/#1-create-your-angular-project-with-angular-cli
+
+
+1: Create your Angular project with Angular CLI
+ng new angular-material-example --routing -is -st -style=scss
+
+
+2: npm install @angular-material and hammerjs
+npm install --save @angular/material @angular/cdk hammerjs
+
+
+3: Configure angular-cli.json and hammerjs
+
+
+"scripts": [
+ "../node_modules/hammerjs/hammer.min.js"
+],
+	
+
+4: Include a theme and Material Icons
+Editar:  src/style.css or src/style.scss and add:
+
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+* If you are using css as file extension, include the following in your src/style.css
+@import '~https://fonts.googleapis.com/icon?family=Material+Icons';
+
+
+* If you are using scss as file extension, include the following import in your src/style.scss
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+
+Local support to Material Icons
+npm install material-design-icons --save
+@import '~material-design-icons/iconfont/material-icons.css';
+	5: Configure app.module
+Some Angular Material components depend on @angular/animations package. Open your package.json and confirm if it has been already installed (Angular CLI already adds it as a dependency along with other @angular packages). If it is not installed, then install it with the command below:
+
+
+npm install --save @angular/animations
+	
+
+Open app.module.ts and configure the animations package.
+
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+	
+
+
+
+6: Using Material Components
+Creating a HomeComponent page
+
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+	
+
+
+
+ng g m home --routing
+
+
+├── home
+|   ├── home-routing.module.ts
+|   ├── home.module.ts
+
+
+ng g c home/home -st
+
+
+	
+
+
+
+
+
+ng generate component phrases
+
+
+
+
+
+
+Aplicacion
+
+
+* Principal
+Set de frases
+* Phrases
+      * Español
+      * Ingles        (Show english text & go next )
+                Botones -> Home - Next  - Prev  - OK - Top
+1. Cargar el set de frases - Order by Top
+2. Guardar el estado 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Crear Objeto de datos        
+
+
+src/app/phrase.ts
+
+
+export class Phrase {
+  _id: string;
+  us : string;
+  es : string;
+  meaning : string;
+}
+
+
+1. Crear servicio ->         EnglishService
+
+
+Add         import { Observable } from 'rxjs/Observable';
+        import { of } from 'rxjs/observable/of';
+import { Phrase } from './phrases/phrase';
+
+
+Add    import { HttpClient, HttpHeaders } from '@angular/common/http';
+import 'rxjs/add/operator/map';
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
+
+Add    constructor(private http: HttpClient) { }
+getPhrases(): Observable<Phrase[]>{
+     return this.http.get<Phrase[]>(URL)
+ }
+
+
+En app.module.ts agregar 
+providers: [
+            EnglishService,
+        ],  
+
+
+1. Crear componente ->        phrases        
+
+
+Add ref         ->        import { Phrase }                 from '../phrase ;
+Add service         ->         import { EnglishService}         from '../englishService.service';
+Add property    ->        phrases: Phrase[];
+
+
+                constructor(private englishService: EnglishService) { }
+getPhrases(): void {
+    this.englishService.getPhrases()
+      .subscribe(phrases => this.phrases = phrases);
+}
+
+
+
+
+
+
+1. Swiper 
+ import { SwiperModule } from 'angular2-useful-swiper';
+
+
+
+
+
+
+2. Ionic
+
+
+
+
+npm install -g cordova
+npm install -g ionic
+ionic info
+npm install -g typescript
+ionic start githubIonic tutorial --v2                -- Starter app
+ionic serve
+ionic serve -l
+ionic cordova build android
+
+
+
+
+
+1. npm install -g cordova ionic
+2. ionic start myApp tabs
+   1. Ios & android
+1. cd myApp
+ionic serve
+2. ionic cordova run android --prod --release
+
+
+RD /S /Q "C:\Users\MYEQ\Documents\Aplicaciones\training_english\ionic\node_modules"
+
+
+http://chatbot-chatbot01.7e14.starter-us-west-2.openshiftapps.com/api/ingles
+
+
+https://ionicframework.com/docs/cli/cordova/build/
+https://www.joshmorony.com/offline-syncing-in-ionic-2-with-pouchdb-couchdb/
+
+
+C:\Users\MYEQ\Documents\Aplicaciones\androidHtml5\app\src\main\assets\www
+
+
+Generar componente
+https://www.9lessons.info/2017/01/ionic-2-mobile-app-using-angular-2-and.html
+
+
+ionic generate component Phrases
+
+
+
+
+
+
+
+
+
+
+
+
+Aplicacion
+
+
+app/app.modules.ts
+
+
+import { PhrasesComponent } from '../components/phrases/phrases';
+@NgModule({
+  declarations: [...,PhrasesComponent
+  ],
+  imports: [],
+  entryComponents: [...,PhrasesComponent],
+  providers: []
+})
+
+
+Service
+
+
+app/services/english.service.ts
+
+
+
+
+
+
+
+
+Componentes
+
+
+components/components.module.ts
+
+
+        import { PhrasesComponent } from './phrases/phrases';
+import { EnglishService } from './services/english.service';
+
+
+@NgModule({
+templateUrl: 'app.html',
+providers: [EnglishService]
+})
+
+
+
+
+components/Phrases/phrases.html
+ phrases.ts
+ phrases.scss
+
+
+
+
+npm install pouchdb --save
+typings install dt~require --save --global
+ionic cordova run android --prod --release
+ionic cordova build android --prod --release
